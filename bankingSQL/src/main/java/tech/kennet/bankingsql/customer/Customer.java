@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import tech.kennet.bankingsql.account.Account;
 
+
 @Entity
 @Table
 public class Customer {
@@ -35,9 +36,9 @@ public class Customer {
     private String name;
     private String email;
     private LocalDate dob;
+    
     @Transient
     private Integer age;
-    private Long branchid;
     
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable( 
@@ -47,40 +48,39 @@ public class Customer {
     @JsonManagedReference
     private Set<Account> accounts = new HashSet<Account>();
     
-    public Customer(Set<Account> accounts, String name, String email, LocalDate dob,
-            Long branchid) {
+    public Customer(Set<Account> accounts, String name, String email, LocalDate dob) {
         this.accounts = accounts;
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.branchid = branchid;
+        
     }
 
-    public Customer(String name, String email, LocalDate dob, Long branchid) {
+    public Customer(String name, String email, LocalDate dob) {
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.branchid = branchid;
+        
     }
 
-    public Customer(Long id, String name, String email, LocalDate dob, Long branchid) {
+    public Customer(Long id, String name, String email, LocalDate dob) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.branchid = branchid;
+        
     }
 
     public Customer() {
     }
 
-    public Customer(Long id, String name, String email, LocalDate dob, Integer age, Long branchid) {
+    public Customer(Long id, String name, String email, LocalDate dob, Integer age) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.dob = dob;
         this.age = age;
-        this.branchid = branchid;
+        
     }
 
     public Long getId() {
@@ -113,12 +113,7 @@ public class Customer {
     public void setAge(Integer age) {
         this.age = age;
     }
-    public Long getBranchid() {
-        return branchid;
-    }
-    public void setBranchid(Long branchid) {
-        this.branchid = branchid;
-    }
+    
 
     public Set<Account> getAccounts() {
         return accounts;

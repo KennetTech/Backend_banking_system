@@ -18,8 +18,7 @@ public class CustomerConfig {
             Customer alex = new Customer(
                     "Alex",
                     "Alex.andersen@gmail.com",
-                    LocalDate.of(2002, Month.JANUARY, 21),
-                    1L
+                    LocalDate.of(2002, Month.JANUARY, 21)
             );
             
             Account a = new Account(
