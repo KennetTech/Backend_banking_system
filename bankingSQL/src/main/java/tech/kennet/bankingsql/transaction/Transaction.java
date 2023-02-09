@@ -2,11 +2,11 @@ package tech.kennet.bankingsql.transaction;
 
 
 import java.time.LocalDate;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -14,26 +14,20 @@ import javax.persistence.Table;
 public class Transaction {
     
     @Id
-    @SequenceGenerator(
-        name = "transaction_sequence",
-        sequenceName = "transaction_sequence",
-        allocationSize = 1
-    )
-    @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "transaction_sequence"
-    )
+    @Column(name = "transaction_id")
+    @GeneratedValue
     private Long id;
-    private Long from_account;
-    private int to_accountId;
+    
+    private Long from_account_id;
+    private Long to_account_id;
     private LocalDate dateAndTime;
     private double amount;
     
     
-    public Transaction(Long id, Long from_account, int to_accountId, LocalDate dateAndTime, double amount) {
+    public Transaction(Long id, Long from_account_id, Long to_account_id, LocalDate dateAndTime, double amount) {
         this.id = id;
-        this.from_account = from_account;
-        this.to_accountId = to_accountId;
+        this.from_account_id = from_account_id;
+        this.to_account_id = to_account_id;
         this.dateAndTime = dateAndTime;
         this.amount = amount;
     }
@@ -53,23 +47,23 @@ public class Transaction {
     }
 
 
-    public Long getFrom_account() {
-        return from_account;
+    public Long getFrom_account_id() {
+        return from_account_id;
     }
 
 
-    public void setFrom_account(Long from_account) {
-        this.from_account = from_account;
+    public void setFrom_account_id(Long from_account) {
+        this.from_account_id = from_account;
     }
 
 
-    public int getTo_accountId() {
-        return to_accountId;
+    public Long getTo_account_id() {
+        return to_account_id;
     }
 
 
-    public void setTo_accountId(int to_accountId) {
-        this.to_accountId = to_accountId;
+    public void setTo_account_id(Long to_account_id) {
+        this.to_account_id = to_account_id;
     }
 
 
