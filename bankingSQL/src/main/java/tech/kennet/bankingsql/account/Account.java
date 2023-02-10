@@ -17,11 +17,11 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import tech.kennet.bankingsql.customer.Customer;
 
 @Entity
-@Table
+@Table(name = "accounts")
 public class Account {
 
     @Id
-    @Column(name = "account_id")
+    @Column(name = "accountId")
     @GeneratedValue
     private Long id;
 
