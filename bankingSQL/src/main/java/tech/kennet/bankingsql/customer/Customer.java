@@ -29,7 +29,7 @@ import tech.kennet.bankingsql.account.Account;
 public class Customer {
     
     @Id
-    @Column(name = "customer_id")
+    @Column(name = "customerId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
@@ -42,8 +42,8 @@ public class Customer {
     
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable( 
-        joinColumns = {@JoinColumn(name = "customer_id")} ,
-        inverseJoinColumns = {@JoinColumn(name = "account_id")}
+        joinColumns = {@JoinColumn(name = "customerId")} ,
+        inverseJoinColumns = {@JoinColumn(name = "accountId")}
     )
     @JsonManagedReference
     private Set<Account> accounts = new HashSet<Account>();

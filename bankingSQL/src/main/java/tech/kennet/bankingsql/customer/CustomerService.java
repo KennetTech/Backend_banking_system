@@ -19,6 +19,10 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
+    public Optional<Customer> getCustomer(Long customerId) {
+        return customerRepository.findById(customerId);
+    }
+
     public void addNewCustomer(Customer customer) {
         Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(customer.getEmail());
         if (customerOptional.isPresent()) {
@@ -54,4 +58,6 @@ public class CustomerService {
             customer.setEmail(email);
         }
     }
+
+    
 }

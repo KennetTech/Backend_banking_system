@@ -17,7 +17,7 @@ import tech.kennet.bankingsql.account.Account;
 public class Overdraft {
     
     @Id
-    @Column(name = "overdraft_id")
+    @Column(name = "overdraftId")
     @GeneratedValue
     private Long id;
 
@@ -25,7 +25,7 @@ public class Overdraft {
     private double amount;
 
     @ManyToOne
-    @JoinColumn(name="account_id", nullable=false)
+    @JoinColumn(name="accountId", nullable=false)
     private Account account;
 
     public Overdraft(LocalDateTime dateTime, double amount, Account account) {

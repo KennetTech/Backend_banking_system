@@ -1,6 +1,7 @@
 package tech.kennet.bankingsql.customer;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,14 +33,19 @@ public class CustomerController {
         return customerService.getCustomers();
     }
 
+    @GetMapping(path = "{customerId}")
+    public Optional<Customer> getCustomer(@PathVariable("customerId") Long customerId) {
+        return customerService.getCustomer(customerId);
+    }
+
     @PostMapping
     public void registerNewCustomer(@RequestBody Customer customer) {
         customerService.addNewCustomer(customer);
     }
 
     @DeleteMapping(path = "{customerId}")
-    public void deleteCustomer(@PathVariable("customerId") Long customerid) {
-        customerService.deleteCustomer(customerid);
+    public void deleteCustomer(@PathVariable("customerId") Long customerId) {
+        customerService.deleteCustomer(customerId);
     }
 
     @PutMapping(path = "{customerId}")

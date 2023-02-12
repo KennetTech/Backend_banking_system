@@ -4,5 +4,6 @@
         "bankingsql",
         "bankingsystem",
         "customeraccount"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

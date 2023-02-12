@@ -1,44 +1,53 @@
 package tech.kennet.bankingsql.customer;
 
-import java.time.LocalDate;
-import java.time.Month;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.util.Date;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.github.javafaker.Faker;
+
 import tech.kennet.bankingsql.account.Account;
+import tech.kennet.bankingsql.account.AccountRepository;
 
 
 @Configuration
 public class CustomerConfig {
     
     @Bean
-    CommandLineRunner commandLineRunnerCustomer(CustomerRepository repository) {
+    CommandLineRunner commandLineRunnerCustomer(CustomerRepository repository, AccountRepository accountRepository) {
         return args -> {
-            Customer alex = new Customer(
-                    "Alex",
-                    "Alex.andersen@gmail.com",
-                    LocalDate.of(2002, Month.JANUARY, 21)
-            );
+
+            Faker faker = new Faker();
             
-            Account a = new Account(
-                "denStoreLomme",
-                2002.32, 
-                LocalDate.of(1994, Month.AUGUST, 21), 
-                1L
-            );
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = dateFormat.parse("1950-01-01");
+            Date date2 = dateFormat.parse("2023-01-01"); 
 
-            alex.getAccounts().add(a);
+            for (int i = 0; i < 49; i++) {
+                Customer customer = new Customer(
+                    faker.name().firstName() + " " + faker.name().lastName(),
+                    faker.internet().emailAddress(),
+                    faker.date().birthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+                    );
 
-            a.getCustomers().add(alex);
+                    Account a = new Account(
+                        faker.name().name(),
+                        faker.number().numberBetween(0, 5000), 
+                        faker.date().between(date, date2).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 
+                        1L
+                    );
 
-            repository.save(alex);
-
-            /*
-            repository.saveAll(
-                List.of(catja, torben)
-            );
-            */
+                customer.getAccounts().add(a);
+                a.getCustomers().add(customer);
+    
+                repository.save(customer);
+                accountRepository.save(a);
+            }
+            
         };
     }
 }
