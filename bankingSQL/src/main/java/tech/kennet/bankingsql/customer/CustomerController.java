@@ -1,6 +1,7 @@
 package tech.kennet.bankingsql.customer;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +53,11 @@ public class CustomerController {
     public void updateCustomer(@PathVariable("customerId") Long customerId, @RequestParam(required = false) String name, @RequestParam(required = false) String email) {
         customerService.updateCustomer(customerId, name, email);
     }
+
+    @PutMapping(path = "/addaccount/{customerId}/{accountId}")
+    public void updateCustomerAccount(@PathVariable Map<String, String> pathVarsMap) {
+        customerService.updateCustomerAccount(Long.parseLong(pathVarsMap.get("customerId")), Long.parseLong(pathVarsMap.get("accountId")));
+    }
+
     
 }

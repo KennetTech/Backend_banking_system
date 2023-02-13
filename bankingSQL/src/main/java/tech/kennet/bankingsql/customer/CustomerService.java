@@ -6,13 +6,18 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import tech.kennet.bankingsql.account.Account;
+import tech.kennet.bankingsql.account.AccountRepository;
+
 @Service
 public class CustomerService {
     
     private final CustomerRepository customerRepository;
+    private final AccountRepository accountRepository;
 
-    public CustomerService(CustomerRepository customerRepository) {
+    public CustomerService(CustomerRepository customerRepository, AccountRepository accountRepository) {
         this.customerRepository = customerRepository;
+        this.accountRepository = accountRepository;
     }
 
     public List<Customer> getCustomers() {
@@ -35,7 +40,7 @@ public class CustomerService {
     public void deleteCustomer(Long customerid) {
         Boolean exists = customerRepository.existsById(customerid);
         if (!exists) {
-            throw new IllegalStateException("student with id " + customerid + " does not exists");
+            throw new IllegalStateException("customer with id " + customerid + " does not exists");
         }
         customerRepository.deleteById(customerid);
     }
@@ -57,6 +62,26 @@ public class CustomerService {
             }
             customer.setEmail(email);
         }
+    }
+
+    public void updateCustomerAccount(long customerId, long accountId) {
+        Customer customer = customerRepository.findById(customerId)
+        .orElseThrow(() -> new IllegalStateException(
+            "customer with id " + customerId + " does not exists"
+        ));
+
+        Account a = accountRepository.findById(accountId)
+        .orElseThrow(() -> new IllegalStateException(
+            "account with id " + accountId + " does not exists"
+        ));
+
+                customer.getAccounts().add(a);
+                a.getCustomers().add(customer);
+    
+                customerRepository.save(customer);
+                accountRepository.save(a);
+
+
     }
 
     
