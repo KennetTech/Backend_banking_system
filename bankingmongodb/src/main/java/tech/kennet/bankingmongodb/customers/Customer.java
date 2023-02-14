@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Data;
 
 @Data
-@Document
+@Document("customers")
 public class Customer {
 
     public Customer(String first_name, String last_name, String email, LocalDate date_of_birth, String customertype_id, String branch_id) {
@@ -21,7 +21,7 @@ public class Customer {
     }
 
     @Id
-    private String id;
+    private String _id;
 
     private String first_name;
     private String last_name;

@@ -43,7 +43,7 @@ public class AccountController {
         accountService.updateAccount(accountId, account_name, balance, date_opened, owner_Id);
     }
 
-    @PutMapping(path = "/{accountId}/addaccount/{customerId}")
+    @PutMapping(path = "/{accountId}/addowner/{customerId}")
     public void updateCustomerAccount(@PathVariable Map<String, String> pathVarsMap) {
         accountService.updateCustomerAccount(pathVarsMap.get("accountId"), pathVarsMap.get("customerId"));
     }

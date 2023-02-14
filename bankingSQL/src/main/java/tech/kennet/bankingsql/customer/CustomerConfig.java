@@ -35,7 +35,7 @@ public class CustomerConfig {
                     );
 
                     Account a = new Account(
-                        faker.name().name(),
+                        faker.funnyName().name(),
                         faker.number().numberBetween(0, 5000), 
                         faker.date().between(date, date2).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 
                         1L
