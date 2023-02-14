@@ -19,8 +19,6 @@ public class Customer {
         this.date_of_birth = date_of_birth;
         this.customertype_id = customertype_id;
         this.branch_id = branch_id;
-
-
     }
 
     @Id
@@ -31,10 +29,6 @@ public class Customer {
     private String email;
     private LocalDate date_of_birth;
     private String customertype_id;
-    private String branch_id;
-
-    private List<String> accounts;
-
-    
+    private String branch_id;    
 
 }

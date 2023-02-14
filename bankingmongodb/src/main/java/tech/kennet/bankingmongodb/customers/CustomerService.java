@@ -8,12 +8,20 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
+import tech.kennet.bankingmongodb.accounts.Account;
+import tech.kennet.bankingmongodb.accounts.AccountRepository;
 
-@AllArgsConstructor
 @Service
 public class CustomerService {
     
     private final CustomerRepository customerRepository;
+    private final AccountRepository accountRepository;
+
+
+    public CustomerService(CustomerRepository customerRepository, AccountRepository accountRepository) {
+        this.customerRepository = customerRepository;
+        this.accountRepository = accountRepository;
+    }
 
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
@@ -38,7 +46,7 @@ public class CustomerService {
         customerRepository.deleteById(customerid);
     }
 
-    public void updateCustomer(String customerId, String first_name, String last_name, String email, LocalDate date_of_birth, String customertype_id, String branch_id, List<String> accounts) {
+    public void updateCustomer(String customerId, String first_name, String last_name, String email, LocalDate date_of_birth, String customertype_id, String branch_id) {
         Customer customer = customerRepository.findById(customerId)
         .orElseThrow(() -> new IllegalStateException(
             "customer with id " + customerId + " does not exists"
@@ -71,12 +79,5 @@ public class CustomerService {
         if (branch_id != null && branch_id.length() > 0 && !Objects.equals(customer.getBranch_id(), branch_id)) {
             customer.setBranch_id(branch_id);
         }
-
-        if (accounts != null && accounts.size() > 0 && !Objects.equals(customer.getAccounts(), accounts)) {
-            for (String account : accounts) {
-                customer.getAccounts().add(account);
-            }
-        }
     }
-
 }

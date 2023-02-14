@@ -18,6 +18,6 @@ public class Account {
     private String account_name;
     private Double balance;
     private LocalDate date_opened;
-    private List<String> transactions;    
+    private List<String> owner_id;    
     
 }

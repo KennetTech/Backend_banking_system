@@ -2,6 +2,7 @@ package tech.kennet.bankingmongodb.customers;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,7 +39,7 @@ public class CustomerController {
     }
 
     @PutMapping(path = "{customerId}")
-    public void updateCustomer(@PathVariable("customerId") String customerId, @RequestParam(required = false) String first_name, @RequestParam(required = false) String last_name, @RequestParam(required = false) String email, @RequestParam(required = false) LocalDate date_of_birth, @RequestParam(required = false) String customertype_id, @RequestParam(required = false) String branch_id, @RequestParam(required = false) List<String> accounts) {
-        customerService.updateCustomer(customerId, first_name, last_name, email, date_of_birth, customertype_id, branch_id, accounts);
+    public void updateCustomer(@PathVariable("customerId") String customerId, @RequestParam(required = false) String first_name, @RequestParam(required = false) String last_name, @RequestParam(required = false) String email, @RequestParam(required = false) LocalDate date_of_birth, @RequestParam(required = false) String customertype_id, @RequestParam(required = false) String branch_id) {
+        customerService.updateCustomer(customerId, first_name, last_name, email, date_of_birth, customertype_id, branch_id);
     }
 }
