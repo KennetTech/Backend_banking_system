@@ -7,20 +7,13 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import lombok.AllArgsConstructor;
-import tech.kennet.bankingmongodb.accounts.Account;
-import tech.kennet.bankingmongodb.accounts.AccountRepository;
-
 @Service
 public class CustomerService {
     
     private final CustomerRepository customerRepository;
-    private final AccountRepository accountRepository;
 
-
-    public CustomerService(CustomerRepository customerRepository, AccountRepository accountRepository) {
+    public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
-        this.accountRepository = accountRepository;
     }
 
     public List<Customer> getAllCustomers() {
