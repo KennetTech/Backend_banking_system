@@ -10,6 +10,8 @@ import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 import org.springframework.data.neo4j.core.schema.Relationship.Direction;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Node
 public class Customer {
 
@@ -24,7 +26,8 @@ public class Customer {
     private String branch_id;
 
     @Relationship(type = "HAS_OWNER", direction = Direction.INCOMING)
-    private List<Owner> hasOwner = new ArrayList<>();
+    @JsonIgnoreProperties("hasOwners")
+    private List<Account> customerAccounts = new ArrayList<>();
 
     public Customer(String first_name, String last_name, String email, LocalDate date_of_birth) {
         this.first_name = first_name;
@@ -89,12 +92,11 @@ public class Customer {
         this.branch_id = branch_id;
     }
 
-    public List<Owner> getHasOwner() {
-        return hasOwner;
+    public List<Account> getCustomerAccounts() {
+        return customerAccounts;
     }
 
-    public void setHasOwner(List<Owner> hasOwner) {
-        this.hasOwner = hasOwner;
+    public void setCustomerAccounts(List<Account> customerAccounts) {
+        this.customerAccounts = customerAccounts;
     }
-    
 }

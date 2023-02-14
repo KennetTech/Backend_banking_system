@@ -54,7 +54,7 @@ public class CustomerController {
         customerService.updateCustomer(customerId, name, email);
     }
 
-    @PutMapping(path = "/addaccount/{customerId}/{accountId}")
+    @PutMapping(path = "/{customerId}/addaccount/{accountId}")
     public void updateCustomerAccount(@PathVariable Map<String, String> pathVarsMap) {
         customerService.updateCustomerAccount(Long.parseLong(pathVarsMap.get("customerId")), Long.parseLong(pathVarsMap.get("accountId")));
     }

@@ -9,6 +9,8 @@ import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Node
 public class Account {
 
@@ -20,7 +22,14 @@ public class Account {
     private LocalDate date_opened;
     
     @Relationship(type = "HAS_OWNER")
-    private List<Customer> hasOwners = new ArrayList<>();
+    @JsonIgnoreProperties("customerAccounts")
+    public List<Customer> hasOwners = new ArrayList<>();
+
+    public Account(String account_name, Double balance, LocalDate date_opened) {
+        this.account_name = account_name;
+        this.balance = balance;
+        this.date_opened = date_opened;
+    }
 
     public Account() {
     }

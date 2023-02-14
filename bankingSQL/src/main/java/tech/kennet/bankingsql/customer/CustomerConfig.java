@@ -27,7 +27,7 @@ public class CustomerConfig {
             Date date = dateFormat.parse("1950-01-01");
             Date date2 = dateFormat.parse("2023-01-01"); 
 
-            for (int i = 0; i < 49; i++) {
+            for (int i = 0; i <= 49; i++) {
                 Customer customer = new Customer(
                     faker.name().firstName() + " " + faker.name().lastName(),
                     faker.internet().emailAddress(),

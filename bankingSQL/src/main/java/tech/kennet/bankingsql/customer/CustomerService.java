@@ -79,7 +79,6 @@ public class CustomerService {
                 a.getCustomers().add(customer);
     
                 customerRepository.save(customer);
-                accountRepository.save(a);
 
 
     }
