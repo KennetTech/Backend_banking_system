@@ -25,7 +25,7 @@ import tech.kennet.bankingsql.account.Account;
 
 
 @Entity
-@Table
+@Table(name = "customers")
 public class Customer {
     
     @Id

@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import tech.kennet.bankingsql.account.AccountRepository;
 
 @Service
+@Transactional
 public class TransactionService {
 
     private final TransactionRepository transactionRepository;
