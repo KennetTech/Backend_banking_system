@@ -32,7 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 
-secrets.properties
+NEO4Jsecrets.properties
 
 ### Java ###
 # Compiled class file

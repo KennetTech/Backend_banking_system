@@ -32,7 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 
-secrets.properties
+SQLsecrets.properties
 
 ### Java ###
 # Compiled class file

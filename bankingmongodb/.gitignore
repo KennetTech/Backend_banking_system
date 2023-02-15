@@ -33,7 +33,7 @@ build/
 .vscode/
 
 # Local configuration file (sdk path, etc)
-secrets.properties
+MONGOsecrets.properties
 
 ### Java ###
 # Compiled class file
