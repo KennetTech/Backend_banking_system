@@ -11,6 +11,13 @@ import lombok.Data;
 @Document("transactions")
 public class Transaction {
     
+    public Transaction(String id, String iban, LocalDateTime localDate, double randomDouble) {
+        this.from_account_id = id;
+        this.to_account_id = iban;
+        this.date_and_time = localDate;
+        this.amount = randomDouble;
+    }
+
     @Id
     private String id;
 

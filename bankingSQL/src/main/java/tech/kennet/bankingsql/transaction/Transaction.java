@@ -1,7 +1,6 @@
 package tech.kennet.bankingsql.transaction;
 
-
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,13 +18,12 @@ public class Transaction {
     private Long id;
     
     private Long from_account_id;
-    private Long to_account_id;
-    private LocalDate dateAndTime;
+    private String to_account_id;
+    private LocalDateTime dateAndTime;
     private double amount;
     
     
-    public Transaction(Long id, Long from_account_id, Long to_account_id, LocalDate dateAndTime, double amount) {
-        this.id = id;
+    public Transaction(Long from_account_id, String to_account_id, LocalDateTime dateAndTime, double amount) {
         this.from_account_id = from_account_id;
         this.to_account_id = to_account_id;
         this.dateAndTime = dateAndTime;
@@ -56,27 +54,6 @@ public class Transaction {
         this.from_account_id = from_account;
     }
 
-
-    public Long getTo_account_id() {
-        return to_account_id;
-    }
-
-
-    public void setTo_account_id(Long to_account_id) {
-        this.to_account_id = to_account_id;
-    }
-
-
-    public LocalDate getDateAndTime() {
-        return dateAndTime;
-    }
-
-
-    public void setDateAndTime(LocalDate dateAndTime) {
-        this.dateAndTime = dateAndTime;
-    }
-
-
     public double getAmount() {
         return amount;
     }
@@ -84,6 +61,26 @@ public class Transaction {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+
+    public LocalDateTime getDateAndTime() {
+        return dateAndTime;
+    }
+
+
+    public void setDateAndTime(LocalDateTime dateAndTime) {
+        this.dateAndTime = dateAndTime;
+    }
+
+
+    public String getTo_account_id() {
+        return to_account_id;
+    }
+
+
+    public void setTo_account_id(String to_account_id) {
+        this.to_account_id = to_account_id;
     }
 
 }

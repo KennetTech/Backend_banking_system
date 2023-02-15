@@ -1,6 +1,6 @@
 package tech.kennet.bankingsql.transaction;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,14 +46,14 @@ public class TransactionService {
     }
 
 
-    public void updateTransaction(Long transactionId, Long from_account_id, Long to_account_id, LocalDate dateAndTime,
+    public void updateTransaction(Long transactionId, Long from_account_id, String to_account_id, LocalDateTime dateAndTime,
             double amount) {
                 Transaction transaction = transactionRepository.findById(transactionId).
                 orElseThrow(() -> new IllegalStateException(
                     "transaction with Id " + transactionId + "does not exists"
                 ));
 
-                if (from_account_id != null && accountRepository.existsById(to_account_id)) {
+                if (from_account_id != null && accountRepository.existsById(from_account_id)) {
                     transaction.setFrom_account_id(from_account_id);
                 }
 

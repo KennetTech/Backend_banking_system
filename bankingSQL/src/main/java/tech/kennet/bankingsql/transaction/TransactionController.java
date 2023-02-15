@@ -1,6 +1,6 @@
 package tech.kennet.bankingsql.transaction;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,7 +51,7 @@ public class TransactionController {
     }
     
     @PutMapping(path = "{transactionId}")
-    public void updateTransaction(@PathVariable("transactionId") Long transactionId, @RequestParam(required = false) Long from_account_id, @RequestParam(required = false) Long to_account_id, @RequestParam(required = false) LocalDate dateAndTime, @RequestParam(required = false) double amount) {
+    public void updateTransaction(@PathVariable("transactionId") Long transactionId, @RequestParam(required = false) Long from_account_id, @RequestParam(required = false) String to_account_id, @RequestParam(required = false) LocalDateTime dateAndTime, @RequestParam(required = false) double amount) {
         transactionService.updateTransaction(transactionId, from_account_id, to_account_id, dateAndTime, amount);        
     }
 
