@@ -62,6 +62,7 @@ public class CustomerService {
             }
             customer.setEmail(email);
         }
+        
     }
 
     public void updateCustomerAccount(long customerId, long accountId) {

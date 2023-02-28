@@ -33,7 +33,7 @@ public class AccountController {
 
     @GetMapping(path = "{accountId}")
     public Optional<Account> getAccount(@PathVariable("accountId") Long accountId) {
-        return accountService.getAccountById();
+        return accountService.getAccountById(accountId);
     }
     
     @PostMapping
@@ -47,7 +47,7 @@ public class AccountController {
     }
 
     @PutMapping(path = "{accountId}")
-    public void updateAccount(@PathVariable("accountId") Long accountId, @RequestParam(required = false) String name, @RequestParam(required = false) double ballance, @RequestParam(required = false) LocalDate accountOpened, @RequestParam(required = false) Long accountType ) {
+    public void updateAccount(@PathVariable("accountId") Long accountId, @RequestParam(required = false) String name, @RequestParam(required = true) Double ballance, @RequestParam(required = false) LocalDate accountOpened, @RequestParam(required = false) Long accountType ) {
         accountService.updateAccount(accountId, name, ballance, accountOpened, accountType);
     }
 }
