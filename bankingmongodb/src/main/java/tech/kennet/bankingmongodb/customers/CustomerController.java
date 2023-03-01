@@ -2,6 +2,8 @@ package tech.kennet.bankingmongodb.customers;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +26,11 @@ public class CustomerController {
     @GetMapping
     public List<Customer> fetchAllCustomers() {
         return customerService.getAllCustomers();
+    }
+
+    @GetMapping(path = "{customerId}")
+    public Optional<Customer> getCustomer(@PathVariable("customerId") String customerId) {
+        return customerService.getCustomer(customerId);
     }
 
     @PostMapping

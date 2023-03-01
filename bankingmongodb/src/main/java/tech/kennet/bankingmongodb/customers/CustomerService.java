@@ -73,4 +73,8 @@ public class CustomerService {
             customer.setBranch_id(branch_id);
         }
     }
+
+    public Optional<Customer> getCustomer(String customerId) {
+        return customerRepository.findById(customerId);
+    }
 }
